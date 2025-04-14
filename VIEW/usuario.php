@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets,login/css/stylelogin.css">
-    <link rel="stylesheet" href="stylerecup.css">
+    <link rel="stylesheet" href="./css/stylelogin.css">
+    <link rel="stylesheet" href="./css/styleusu.css">
     <title>Cadastro</title>
 </head>
 <body>
@@ -23,20 +23,20 @@
                 <div class="input-group">
                    
                     <div class="input-box">  
-                        <label for="email">Nova senha</label>
-                       <input id="email" type="text" name="email" placeholder="Nova senha " required>
-                       <label for="email">Confirme a senha</label>
-                       <input id="email" type="text" name="email" placeholder="confirme senha  " required>
-                       <button type="button" onclick="redirect()">confirmar</button>
+                        <label for="email">Email</label>
+                       <input id="email" type="email" name="email" placeholder="Digite seu email " required>
+                       
+                    </div>
+                    <div class="login-button">
+                        <button type="button" onclick="redirect()">confirmar</button>
                     </div>
 
-              
             </form>
         </div>
     </div>
     <script>
         function redirect() {
-            window.location.href = "usuario.php";
+            window.location.href = "codigo.php";
         }
     </script>
 </body>
