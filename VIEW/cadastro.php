@@ -13,7 +13,7 @@
            <img src="assets\css\img\undraw_shopping_a55o (1).svg">
         </div>
         <div class="form">
-            <form action="#">
+            <form action="../controller/CadastroController.php" method="POST">
                 <div class="form-header">
                     <div class="title">
                         <h1>Cadastre-se</h1>
@@ -51,9 +51,9 @@
                         <label for="Confirmpassword">Confirme sua senha</label>
                         <input id="Confirmpassword" type="password" name="Confirmpassword" placeholder="Confirme sua senha" required>
                     </div>
-
+                  
                     <div class="login-button">
-                        <button type="button" onclick="login()">Login</button>       
+                        <button type="submit" onclick="login()">Cadastrar</button>       
                         <button type="button" onclick="redirect()">Recuperar senha</button>
                        
                     </div>
