@@ -1,5 +1,5 @@
 <?php
-require '../service/conexao.php';
+require '../SERVICE/conexao.php';
 
 function register($email, $password){
     $conn = new usePDO();
