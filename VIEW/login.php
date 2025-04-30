@@ -8,6 +8,21 @@
     <title>Login</title>
 </head>
 <body>
+<?php if (isset($_SESSION['msg'])): ?>
+    <div class="alert alert-<?= $_SESSION['msg_tipo'] === 'sucesso' ? 'success' : 'danger' ?>">
+        <?= $_SESSION['msg'] ?>
+    </div>
+    <?php 
+    unset($_SESSION['msg']);
+    unset($_SESSION['msg_tipo']);
+    ?>
+<?php endif; ?>
+
+<form method="POST" action="../CONTROLLER/LoginController.php">
+    <input type="email" name="username" placeholder="E-mail" required>
+    <input type="password" name="password" placeholder="Senha" required>
+    <button type="submit">Entrar</button>
+</form>
     <div class="container">
         <div class="form-image">
            <img src="assets\css\img\undraw_shopping_a55o (1).svg" alt="Form Image">

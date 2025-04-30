@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once '../MODEL/loginModel.php';
+require_once '../MODEL/usuarioModel.php'; 
 require_once '../SERVICE/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-   
+    
     if (empty($_POST['username']) || empty($_POST['password'])) {
         $_SESSION['msg'] = "Por favor, preencha todos os campos.";
         $_SESSION['msg_tipo'] = "erro";
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    
+
     $email = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_EMAIL);
     $senha = $_POST['password'];
 
@@ -32,16 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             $_SESSION['msg'] = "Login realizado com sucesso!";
             $_SESSION['msg_tipo'] = "sucesso";
+            header('Location: ../VIEW/pagina_inicial.php'); 
             exit();
         } else {
-        
+   
             $_SESSION['msg'] = "Credenciais inválidas.";
             $_SESSION['msg_tipo'] = "erro";
             header('Location: ../VIEW/login.php');
             exit();
         }
     } catch (Exception $e) {
-     
+    
         error_log("Erro no login: " . $e->getMessage());
         
         $_SESSION['msg'] = "Ocorreu um erro durante o login. Tente novamente.";
@@ -50,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 } else {
-   
+  
     header('Location: ../VIEW/login.php');
     exit();
 }
