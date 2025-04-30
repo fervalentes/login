@@ -18,7 +18,7 @@
     ?>
 <?php endif; ?>
 
-<form method="POST" action="../CONTROLLER/LoginController.php">
+<form method="POST" action="../controller/loginController.php">
     <input type="email" name="username" placeholder="E-mail" required>
     <input type="password" name="password" placeholder="Senha" required>
     <button type="submit">Entrar</button>
