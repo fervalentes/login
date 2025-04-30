@@ -1,30 +1,18 @@
+<?php
+session_start();
+// Verifica se o usuário está logado
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/stylelogin.css">
-    <link rel="stylesheet" href="./css/styleusu.css">
-    <title>Cadastro</title>
+    <title>Página Inicial</title>
 </head>
 <body>
-    <div class="container">
-        <div class="form-image">
-           <img src="assets\css\img\undraw_shopping_a55o (1).svg">
-        </div>
-        <div class="form">
-            <form action="#">
-                <div class="form-header">
-                    <div class="title">
-                        <h1>BEM VINDO!</h1>
- 
-                    </div>
-                </div>
-              
-
-            </form>
-        </div>
-    </div>
-    
+    <h1>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario']['nome']) ?>!</h1>
+    <!-- Restante do conteúdo -->
 </body>
 </html>
