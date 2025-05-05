@@ -1,21 +1,21 @@
 <?php
+class conexao {
+    private $host = 'localhost';
+    private $db = 'login';
+    private $user = 'root';
+    private $pass = '';
+    private $instance;
 
-require '../service/conexao.php';
+    public function __construct() {
+        try {
+            $this->instance = new PDO("mysql:host=$this->host;dbname=$this->db;charset=utf8", $this->user, $this->pass);
+            $this->instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Erro na conexão: " . $e->getMessage());
+        }
+    }
 
-function register($firstname, $lastname, $email, $number, $password){
-    $conn = new usePDO();
-    $instance = $conn->getInstanse();
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO pessoa(nome, sobrenome, email, telefone, senha) VALUES (?,?,?,?,?)";
-    $stmt = $instance->prepare($sql);
-    $stmt->execute([$firstname, $lastname, $email, $number, $hashed_password]);
-
-    $idpessoa = $instance->lastInsertId();
-    
-    $sql = "INSERT INTO usuario(email, senha, id_pessoa) VALUES (?,?,?)";
-    $stmt = $instance->prepare($sql);
-    $stmt->execute([$email, $hashed_password, $idpessoa]);
-
-    $result = $stmt->rowCount();
-    return $result;
+    public function getInstanse() {
+        return $this->instance;
+    }
 }

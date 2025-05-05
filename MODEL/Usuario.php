@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+
+<?php
+class Usuario {
+    public static function buscarPorEmail($email) {
+        // Exemplo de conexão e consulta
+        $conn = new PDO("mysql:host=localhost;dbname=seu_banco", "usuario", "senha");
+        $stmt = $conn->prepare("SELECT * FROM usuario WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+}
+?>
+<!DOCTYPE html> 
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">

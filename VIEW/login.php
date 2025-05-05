@@ -3,24 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/stylelogin.css">
-    <link rel="stylesheet" href="./css/stylerecup.css">
     <title>Login</title>
 </head>
 <body>
 <?php if (isset($_SESSION['msg'])): ?>
-    <div class="alert alert-<?= $_SESSION['msg_tipo'] === 'sucesso' ? 'success' : 'danger' ?>">
-        <?= $_SESSION['msg'] ?>
-    </div>
-    <?php 
-    unset($_SESSION['msg']);
-    unset($_SESSION['msg_tipo']);
-    ?>
+    <div><?= $_SESSION['msg']; unset($_SESSION['msg']); ?></div>
 <?php endif; ?>
 
-<form method="POST" action="../controller/loginController.php">
-    <input type="email" name="username" placeholder="E-mail" required>
-    <input type="password" name="password" placeholder="Senha" required>
+<form method="POST" action="../controller/LoginController.php">
+    <input type="email" name="email" placeholder="E-mail" required>
+    <input type="password" name="senha" placeholder="Senha" required>
     <button type="submit">Entrar</button>
 </form>
     <div class="container">
