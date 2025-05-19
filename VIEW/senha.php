@@ -14,7 +14,7 @@
            <img src="assets\css\img\undraw_shopping_a55o (1).svg">
         </div>
         <div class="form">
-            <form action="#">
+            <form action="../controller/PasswordResetController.php" method="POST">
                 <div class="form-header">
                     <div class="title">
                         <h1>Recuperação de senha!</h1>
@@ -31,10 +31,10 @@
 
                     <div class="input-box">  
                         <label for="Confirmpassword">Confirme sua nova senha</label>
-                        <input id="Confirmpassword" type="password" name="Confirmpassword" placeholder="Confirme sua senha" required>
+                        <input id="Confirmpassword" type="password" name="password-confirm" placeholder="Confirme sua senha" required>
                     </div>
                     <div class="login-button">
-                        <button type="button" onclick="redirect()">confirmar</button>
+                        <button type="submit">Confirmar</button>
                     </div>
               
 
