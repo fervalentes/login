@@ -1,30 +1,41 @@
 <?php
- 
-class ConexaoPDO
-{
-    private $servername = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $dbname = "login";
-    private $instance;
- 
-    function getInstance(){
-        if (empty($this->instance)) {$this->instance = $this->connection();}
-        return $this->instance;
+class Database {
+    protected static $db;
+
+    public static function connect() {
+        if (!self::$db) {
+            try {
+                self::$db = new PDO('sqlite:database.db');
+                self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::createTables();
+            } catch (PDOException $e) {
+                die("Erro de conexão: " . $e->getMessage());
+            }
+        }
+        return self::$db;
     }
- 
-    private function connection(){
-        try {
-            $conn = new PDO("mysql:host={$this->servername};dbname={$this->dbname}",$this->username,$this->password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
-        } catch (PDOException $e) { die("Connection failed: " . $e->getMessage() . "<br>");}
+
+    private static function createTables() {
+        self::$db->exec("CREATE TABLE IF NOT EXISTS usuarios (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            senha TEXT NOT NULL
+        )");
+
+        self::$db->exec("CREATE TABLE IF NOT EXISTS recuperacao (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT NOT NULL,
+            codigo TEXT NOT NULL,
+            expiracao DATETIME NOT NULL
+        )");
+
+        self::$db->exec("CREATE TABLE IF NOT EXISTS emails (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario TEXT NOT NULL,
+            code TEXT NOT NULL,
+            lido INTEGER DEFAULT 0
+        )");
     }
 }
-function ConexaoMysql(){
-    $servidor = "localhost"; $usuario = "root"; $senha = ""; $banco = "login";
-    $conexao = new mysqli($servidor, $usuario, $senha, $banco);
-    if ($conexao->connect_error) {die($conexao->connect_error);}
-    $conexao->set_charset("utf8");
-    return $conexao;
-}
+?>
